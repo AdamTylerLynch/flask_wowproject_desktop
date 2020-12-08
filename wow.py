@@ -6,9 +6,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 
 
+# Everyone on your team should be using the same database user (not 'postgres'), I created a user named 'wowprojectuser'.
+# Everyone on your team should have the same password for that user.
+# The server you connect to is "localhost", that is your localcomputer, and will be resolved by DNS as 127.0.0.1
+# Everyone on your team should use the data database name, I have chosen "WOWProjectOfficer"
 
-
-engine = sqlalchemy.create_engine('postgresql://postgres:dmcin003@hostname/postgres', echo=True)
+engine = sqlalchemy.create_engine('postgresql://wowprojectuser:thisismypassword@localhost/WOWProjectOfficer', echo=True)
 
 
 # these two lines perform the "database reflection" to analyze tables and relationships
@@ -17,7 +20,7 @@ Base.prepare(engine, reflect=True)
 
 
 
-allegations = Base.classes.Allegations
+allegations = Base.classes.allegations
 session = Session(engine)
 
 
